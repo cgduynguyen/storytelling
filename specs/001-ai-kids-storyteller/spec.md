@@ -20,7 +20,7 @@ A child (or parent) opens the storyteller and requests a new story. They can opt
 1. **Given** a user is on the main screen, **When** they tap "Create New Story" without any preferences, **Then** the system generates a random age-appropriate story and displays it.
 2. **Given** a user has selected a theme (e.g., "Space Adventure"), **When** they tap "Create Story", **Then** the system generates a story matching that theme.
 3. **Given** a user provides a custom character name (e.g., "Luna"), **When** the story is generated, **Then** the main character in the story has the specified name.
-4. **Given** a user selects a story length (short/medium/long), **When** the story is generated, **Then** the story length approximately matches the selection (short: ~2 min read, medium: ~5 min read, long: ~10 min read).
+4. **Given** a user selects a story length (short/medium/long), **When** the story is generated, **Then** the story length approximately matches the selection (short: ~300 words/~2 min read, medium: ~600 words/~5 min read, long: ~1000 words/~10 min read).
 
 ---
 
@@ -68,7 +68,7 @@ Parents can configure safety settings to ensure all content remains appropriate.
 
 **Acceptance Scenarios**:
 
-1. **Given** a parent accesses settings, **When** they set age range to "3-5 years", **Then** all generated stories use simpler vocabulary and shorter sentences appropriate for that age.
+1. **Given** a parent accesses settings, **When** they set age range to one of three bands (3-5, 6-8, or 9-10 years), **Then** all generated stories use vocabulary, sentence structure, and thematic complexity appropriate for that developmental stage.
 2. **Given** a parent has excluded "scary" themes, **When** a story is generated, **Then** the story contains no frightening elements, villains, or tense situations.
 3. **Given** parental controls are enabled, **When** a parent views story history, **Then** they see all stories generated with timestamps.
 
@@ -102,14 +102,16 @@ During story reading, children can make choices that influence how the story unf
   - Allow access to saved stories offline; show clear message that new stories require connection
 - What if a child rapidly taps buttons or makes multiple requests?
   - Debounce inputs and show loading state to prevent duplicate story generation
+- What happens when a user reaches the 50 story storage limit?
+  - Display a friendly message prompting user to delete old stories before saving new ones
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
 - **FR-001**: System MUST generate original, age-appropriate stories based on user preferences (theme, character names, length)
-- **FR-002**: System MUST ensure all generated content is safe and appropriate for children (no violence, scary content, or inappropriate themes unless within safe bounds for selected age)
-- **FR-003**: System MUST provide audio narration for generated stories with clear, engaging voice
+- **FR-002**: System MUST ensure all generated content is safe and appropriate for children through automated content filtering and AI safety guardrails during generation (no violence, scary content, or inappropriate themes unless within safe bounds for selected age)
+- **FR-003**: System MUST provide pre-generated audio narration for all generated stories with clear, engaging voice (generated during story creation)
 - **FR-004**: System MUST allow users to pause, resume, and stop audio narration
 - **FR-005**: System MUST highlight current text during narration playback
 - **FR-006**: System MUST allow users to save stories to a personal library
@@ -124,9 +126,9 @@ During story reading, children can make choices that influence how the story unf
 
 ### Key Entities
 
-- **Story**: A generated narrative with title, content, theme, creation date, audio narration data, and optional branch points for interactive mode
+- **Story**: A generated narrative with title, content (300/600/1000 words for short/medium/long), theme, creation date, pre-generated audio narration data (stored with story), and optional branch points for interactive mode
 - **User Profile**: Represents the child user with preferences and access to their story library
-- **Story Library**: Collection of saved stories associated with a user profile
+- **Story Library**: Collection of saved stories associated with a user profile (maximum 50 stories per user)
 - **Parental Settings**: Configuration for content safety including age range, excluded themes, and story history access
 - **Story Theme**: Category of story (adventure, animals, fantasy, friendship, space, underwater, etc.)
 - **Choice Point**: A branch in an interactive story where user makes a decision affecting narrative direction
@@ -136,7 +138,7 @@ During story reading, children can make choices that influence how the story unf
 ### Measurable Outcomes
 
 - **SC-001**: Users can generate a complete story in under 30 seconds from request to display
-- **SC-002**: 95% of generated stories pass content safety review (no inappropriate content for target age)
+- **SC-002**: 95% of generated stories pass automated content safety filtering (AI safety guardrails prevent inappropriate content for target age)
 - **SC-003**: Audio narration starts within 5 seconds of user request
 - **SC-004**: Users can save and retrieve stories with 100% reliability (no data loss)
 - **SC-005**: Children aged 4-10 can navigate and use the storyteller independently without adult help (validated through usability testing)
@@ -145,11 +147,21 @@ During story reading, children can make choices that influence how the story unf
 - **SC-008**: Parent satisfaction with content safety controls exceeds 90% (survey metric)
 - **SC-009**: Interactive stories provide at least 3 meaningful choice points with distinct narrative outcomes
 
+## Clarifications
+
+### Session 2026-01-13
+
+- Q: What age bands should be supported for age-appropriate content differentiation? → A: Three age bands: 3-5, 6-8, 9-10 years
+- Q: What are the target word counts for short/medium/long stories? → A: Short: ~300 words, Medium: ~600 words, Long: ~1000 words
+- Q: Is audio narration pre-generated during story creation or generated on-demand? → A: Pre-generate audio during story creation (stored with story)
+- Q: How is content safety review performed to achieve 95% pass rate? → A: Automated content filtering during generation (AI safety guardrails)
+- Q: What is the maximum storage capacity for saved stories per user? → A: 50 stories maximum (reasonable library size)
+
 ## Assumptions
 
-- Target audience is children aged 3-10 years and their parents/guardians
+- Target audience is children aged 3-10 years (segmented into three developmental age bands: 3-5, 6-8, 9-10 years) and their parents/guardians
 - Users have access to devices with audio playback capability (speakers or headphones)
 - Internet connectivity is available for generating new stories (offline mode for saved stories only)
 - AI content generation service provides sufficient guardrails for child-safe content by default
 - Parents will complete initial setup including age range configuration
-- Device storage is sufficient for saving a reasonable number of stories (assume ~50 stories minimum)
+- Device storage is sufficient for saving up to 50 stories per user (estimated 15-50MB total with pre-generated audio)
