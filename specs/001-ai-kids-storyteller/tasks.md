@@ -99,12 +99,12 @@
 
 ### API Implementation for US1
 
-- [ ] T041 [P] [US1] Create NVIDIA AI client in apps/api/src/lib/nvidia.ts
-- [ ] T042 [P] [US1] Create story prompt templates per age band with content safety guardrails in apps/api/src/services/prompts.ts
-- [ ] T043 [US1] Implement StoryGenerationService with AI safety filtering in apps/api/src/services/storyGeneration.ts
-- [ ] T044 [US1] Create story generation BullMQ worker in apps/api/src/jobs/storyWorker.ts
-- [ ] T045 [US1] Implement story CRUD routes in apps/api/src/routes/stories.ts (POST /stories, GET /stories/:id, GET /stories, DELETE /stories/:id)
-- [ ] T046 [US1] Implement auth routes in apps/api/src/routes/auth.ts (register, login, refresh, logout)
+- [x] T041 [P] [US1] Create NVIDIA AI client in apps/api/src/lib/nvidia.ts
+- [x] T042 [P] [US1] Create story prompt templates per age band with content safety guardrails in apps/api/src/services/prompts.ts
+- [x] T043 [US1] Implement StoryGenerationService with AI safety filtering in apps/api/src/services/storyGeneration.ts
+- [x] T044 [US1] Create story generation BullMQ worker in apps/api/src/jobs/storyWorker.ts
+- [x] T045 [US1] Implement story CRUD routes in apps/api/src/routes/stories.ts (POST /stories, GET /stories/:id, GET /stories, DELETE /stories/:id)
+- [x] T046 [US1] Implement auth routes in apps/api/src/routes/auth.ts (register, login, refresh, logout)
 
 ### Mobile Implementation for US1
 

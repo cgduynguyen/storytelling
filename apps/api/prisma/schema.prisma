@@ -124,14 +124,14 @@ model StorySegment {
 }
 
 model Choice {
-  id            String @id @default(uuid())
+  id            String  @id @default(uuid())
   segmentId     String
   text          String
-  nextSegmentId String
+  nextSegmentId String?
   order         Int
 
-  segment     StorySegment @relation("SegmentChoices", fields: [segmentId], references: [id], onDelete: Cascade)
-  nextSegment StorySegment @relation("ChoiceTarget", fields: [nextSegmentId], references: [id], onDelete: Cascade)
+  segment     StorySegment  @relation("SegmentChoices", fields: [segmentId], references: [id], onDelete: Cascade)
+  nextSegment StorySegment? @relation("ChoiceTarget", fields: [nextSegmentId], references: [id], onDelete: Cascade)
 
   @@index([segmentId, order])
   @@map("choices")

@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import healthRoutes from './health';
+import authRoutes from './auth';
+import storyRoutes from './stories';
 
 const router: Router = Router();
 
@@ -8,8 +10,8 @@ const router: Router = Router();
  *
  * Structure:
  * - /health - Health check endpoints
- * - /auth - Authentication endpoints (will be added in US1)
- * - /stories - Story CRUD endpoints (will be added in US1)
+ * - /auth - Authentication endpoints
+ * - /stories - Story CRUD endpoints
  * - /library - Library management endpoints (will be added in US3)
  * - /settings - User and parental settings endpoints (will be added in US4)
  */
@@ -17,10 +19,14 @@ const router: Router = Router();
 // Health check (no authentication required)
 router.use('/health', healthRoutes);
 
+// Authentication (no authentication required)
+router.use('/auth', authRoutes);
+
+// Stories (authentication required - handled by routes)
+router.use('/stories', storyRoutes);
+
 // Placeholder for future routes
-// router.use('/auth', authRoutes);
-// router.use('/stories', authenticate, storyRoutes);
-// router.use('/library', authenticate, libraryRoutes);
-// router.use('/settings', authenticate, settingsRoutes);
+// router.use('/library', libraryRoutes);
+// router.use('/settings', settingsRoutes);
 
 export default router;
