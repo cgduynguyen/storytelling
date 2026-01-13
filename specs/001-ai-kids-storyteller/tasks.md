@@ -46,13 +46,13 @@
 
 ### Shared Package Foundation
 
-- [ ] T010 Create enum schemas in packages/shared/src/schemas/enums.ts (AgeBand, StoryTheme, StoryLength, StoryStatus)
-- [ ] T011 [P] Create story Zod schemas in packages/shared/src/schemas/story.schema.ts
-- [ ] T012 [P] Create auth Zod schemas in packages/shared/src/schemas/auth.schema.ts
-- [ ] T013 [P] Create settings Zod schemas in packages/shared/src/schemas/settings.schema.ts
-- [ ] T014 [P] Create error types in packages/shared/src/types/errors.ts
-- [ ] T015 [P] Create API response types in packages/shared/src/types/api.ts
-- [ ] T016 Create shared package barrel exports in packages/shared/src/index.ts
+- [x] T010 Create enum schemas in packages/shared/src/schemas/enums.ts (AgeBand, StoryTheme, StoryLength, StoryStatus)
+- [x] T011 [P] Create story Zod schemas in packages/shared/src/schemas/story.schema.ts
+- [x] T012 [P] Create auth Zod schemas in packages/shared/src/schemas/auth.schema.ts
+- [x] T013 [P] Create settings Zod schemas in packages/shared/src/schemas/settings.schema.ts
+- [x] T014 [P] Create error types in packages/shared/src/types/errors.ts
+- [x] T015 [P] Create API response types in packages/shared/src/types/api.ts
+- [x] T016 Create shared package barrel exports in packages/shared/src/index.ts
 
 ### Database Foundation
 
