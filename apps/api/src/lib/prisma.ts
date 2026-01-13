@@ -1,9 +1,9 @@
 /**
  * Prisma Client Singleton
- * 
+ *
  * Ensures a single Prisma Client instance is used across the application.
  * In development, this prevents connection pool exhaustion during hot-reload.
- * 
+ *
  * @see https://www.prisma.io/docs/guides/performance-and-optimization/connection-management
  */
 
@@ -11,7 +11,6 @@ import { PrismaClient } from '@prisma/client';
 
 // Extend NodeJS global type to include prisma
 declare global {
-  // eslint-disable-next-line no-var
   var prisma: PrismaClient | undefined;
 }
 

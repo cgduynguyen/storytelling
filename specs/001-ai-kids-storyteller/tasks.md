@@ -62,17 +62,17 @@
 
 ### API Core Infrastructure
 
-- [ ] T020 Create Express app entry point in apps/api/src/index.ts
-- [ ] T021 [P] Create Pino logger configuration in apps/api/src/lib/logger.ts
-- [ ] T022 [P] Create Redis client in apps/api/src/lib/redis.ts
-- [ ] T023 [P] Create environment config in apps/api/src/config/env.ts
-- [ ] T024 [P] Create error handling middleware in apps/api/src/middleware/errorHandler.ts
-- [ ] T025 [P] Create validation middleware (Zod) in apps/api/src/middleware/validate.ts
-- [ ] T026 Create JWT utilities (sign, verify, refresh) in apps/api/src/lib/jwt.ts
-- [ ] T027 Create auth middleware in apps/api/src/middleware/auth.ts
-- [ ] T028 Create BullMQ connection and queue setup in apps/api/src/lib/queue.ts
-- [ ] T029 Create health check route in apps/api/src/routes/health.ts
-- [ ] T030 Configure API routes mounting in apps/api/src/routes/index.ts
+- [x] T020 Create Express app entry point in apps/api/src/index.ts
+- [x] T021 [P] Create Pino logger configuration in apps/api/src/lib/logger.ts
+- [x] T022 [P] Create Redis client in apps/api/src/lib/redis.ts
+- [x] T023 [P] Create environment config in apps/api/src/config/env.ts
+- [x] T024 [P] Create error handling middleware in apps/api/src/middleware/errorHandler.ts
+- [x] T025 [P] Create validation middleware (Zod) in apps/api/src/middleware/validate.ts
+- [x] T026 Create JWT utilities (sign, verify, refresh) in apps/api/src/lib/jwt.ts
+- [x] T027 Create auth middleware in apps/api/src/middleware/auth.ts
+- [x] T028 Create BullMQ connection and queue setup in apps/api/src/lib/queue.ts
+- [x] T029 Create health check route in apps/api/src/routes/health.ts
+- [x] T030 Configure API routes mounting in apps/api/src/routes/index.ts
 
 ### Mobile Core Infrastructure
 
