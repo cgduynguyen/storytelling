@@ -52,6 +52,7 @@ export const StoryResponseSchema = z.object({
   audioUrl: z.string().url().nullable(),
   wordBoundaries: z.array(WordBoundarySchema).nullable(),
   savedToLibrary: z.boolean(),
+  error: z.string().nullable().optional(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });

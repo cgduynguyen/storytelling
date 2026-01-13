@@ -38,9 +38,13 @@ export const colors = {
   text: {
     primary: '#2D3748', // Dark gray (readable)
     secondary: '#718096', // Medium gray
+    tertiary: '#A0AEC0', // Light gray / tertiary
     light: '#A0AEC0', // Light gray
     white: '#FFFFFF', // White
   },
+
+  // Error color (top-level for easy access)
+  error: '#FC8181', // Red (softer than harsh red)
 
   // UI state colors
   state: {

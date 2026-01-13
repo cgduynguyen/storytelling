@@ -16,8 +16,9 @@ import {
 export interface User {
   id: string;
   email: string;
+  name: string;
   childName?: string;
-  parentalPinSet: boolean;
+  parentalPinSet?: boolean;
 }
 
 interface AuthState {

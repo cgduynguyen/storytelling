@@ -108,18 +108,18 @@
 
 ### Mobile Implementation for US1
 
-- [ ] T047 [P] [US1] Create story hooks (useCreateStory, useStory, useStoryHistory) in apps/mobile/src/hooks/useStory.ts
-- [ ] T048 [P] [US1] Create auth hooks (useLogin, useRegister, useLogout) in apps/mobile/src/hooks/useAuth.ts
-- [ ] T049 [P] [US1] Create story store (current story state) in apps/mobile/src/stores/storyStore.ts
-- [ ] T050 [P] [US1] Create ThemeSelector component in apps/mobile/src/components/story/ThemeSelector.tsx
-- [ ] T051 [P] [US1] Create LengthSelector component in apps/mobile/src/components/story/LengthSelector.tsx
-- [ ] T052 [P] [US1] Create CharacterInput component with sanitization in apps/mobile/src/components/story/CharacterInput.tsx
-- [ ] T053 [US1] Create CreateStoryScreen in apps/mobile/src/app/(tabs)/create.tsx
-- [ ] T054 [US1] Create StoryViewScreen (display generated story) in apps/mobile/src/app/story/[id].tsx
-- [ ] T055 [US1] Create StoryGeneratingScreen (loading state) in apps/mobile/src/components/story/GeneratingView.tsx
-- [ ] T056 [US1] Create LoginScreen in apps/mobile/src/app/auth/login.tsx
-- [ ] T057 [US1] Create RegisterScreen in apps/mobile/src/app/auth/register.tsx
-- [ ] T058 [US1] Implement story polling for generation status in apps/mobile/src/hooks/useStoryPolling.ts
+- [x] T047 [P] [US1] Create story hooks (useCreateStory, useStory, useStoryHistory) in apps/mobile/src/hooks/useStory.ts
+- [x] T048 [P] [US1] Create auth hooks (useLogin, useRegister, useLogout) in apps/mobile/src/hooks/useAuth.ts
+- [x] T049 [P] [US1] Create story store (current story state) in apps/mobile/src/stores/storyStore.ts
+- [x] T050 [P] [US1] Create ThemeSelector component in apps/mobile/src/components/story/ThemeSelector.tsx
+- [x] T051 [P] [US1] Create LengthSelector component in apps/mobile/src/components/story/LengthSelector.tsx
+- [x] T052 [P] [US1] Create CharacterInput component with sanitization in apps/mobile/src/components/story/CharacterInput.tsx
+- [x] T053 [US1] Create CreateStoryScreen in apps/mobile/src/app/(tabs)/create.tsx
+- [x] T054 [US1] Create StoryViewScreen (display generated story) in apps/mobile/src/app/story/[id].tsx
+- [x] T055 [US1] Create StoryGeneratingScreen (loading state) in apps/mobile/src/components/story/GeneratingView.tsx
+- [x] T056 [US1] Create LoginScreen in apps/mobile/src/app/auth/login.tsx
+- [x] T057 [US1] Create RegisterScreen in apps/mobile/src/app/auth/register.tsx
+- [x] T058 [US1] Implement story polling for generation status in apps/mobile/src/hooks/useStoryPolling.ts
 
 ### Testing for US1
 
