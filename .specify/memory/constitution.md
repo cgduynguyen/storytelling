@@ -13,7 +13,7 @@ Backend and mobile must agree on API contracts before implementation. OpenAPI/Sw
 
 ### IV. Test-First Development (NON-NEGOTIABLE)
 - **Backend**: Unit tests for services, integration tests for API endpoints
-- **Mobile**: Component tests with React Native Testing Library, E2E with Detox
+- **Mobile**: Component tests with React Native Testing Library
 - Minimum 80% code coverage for business logic
 - Red-Green-Refactor cycle enforced
 
