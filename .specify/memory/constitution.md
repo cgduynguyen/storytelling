@@ -1,50 +1,110 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Storyteller Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Monorepo Architecture
+The project follows a monorepo structure with clear separation between mobile (React Native) and backend (Node.js) codebases. Shared code (types, utilities, validation schemas) lives in a dedicated `packages/shared` directory. Each package must be independently buildable and testable.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Type Safety First
+TypeScript is mandatory across all packages. Strict mode enabled (`strict: true`). No `any` types without explicit justification. API contracts defined via shared TypeScript interfaces. Use Zod for runtime validation matching TypeScript types.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. API Contract-Driven Development
+Backend and mobile must agree on API contracts before implementation. OpenAPI/Swagger specs required for all REST endpoints. Changes to API contracts require versioning and migration plans. Shared types auto-generated from API specs where possible.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Test-First Development (NON-NEGOTIABLE)
+- **Backend**: Unit tests for services, integration tests for API endpoints
+- **Mobile**: Component tests with React Native Testing Library, E2E with Detox
+- Minimum 80% code coverage for business logic
+- Red-Green-Refactor cycle enforced
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. State Management & Data Flow
+- **Mobile**: Zustand for global state, React Query/TanStack Query for server state
+- **Backend**: Stateless services, database as source of truth
+- Unidirectional data flow enforced
+- No prop drilling beyond 2 levels—use context or state management
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### VI. Error Handling & Resilience
+- All errors must be typed and handled explicitly
+- Backend returns consistent error response format: `{ error: { code, message, details? } }`
+- Mobile implements offline-first patterns with optimistic updates
+- Retry logic with exponential backoff for network requests
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### VII. Security Standards
+- JWT-based authentication with refresh token rotation
+- All API endpoints require authentication unless explicitly public
+- Sensitive data encrypted at rest and in transit
+- Input validation on both client and server (defense in depth)
+- No secrets in code—use environment variables
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Technology Stack
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Mobile (React Native)
+- **Framework**: React Native with Expo (managed workflow preferred)
+- **Navigation**: React Navigation v6+
+- **Styling**: NativeWind (Tailwind for React Native) or StyleSheet
+- **Forms**: React Hook Form + Zod validation
+- **HTTP Client**: Axios with interceptors for auth
+- **Storage**: AsyncStorage for simple data, MMKV for performance-critical
+
+### Backend (Node.js)
+- **Runtime**: Node.js 20 LTS
+- **Framework**: Express.js or Fastify
+- **Database**: PostgreSQL with Prisma ORM
+- **Caching**: Redis for sessions and caching
+- **Queue**: BullMQ for background jobs
+- **Logging**: Pino for structured JSON logging
+
+### Shared
+- **Language**: TypeScript 5.x
+- **Package Manager**: pnpm with workspaces
+- **Validation**: Zod schemas shared between frontend and backend
+- **Linting**: ESLint + Prettier (consistent config across packages)
+
+## Development Workflow
+
+### Branch Strategy
+- `main` - production-ready code
+- `develop` - integration branch
+- `feature/*` - new features
+- `fix/*` - bug fixes
+- `release/*` - release preparation
+
+### Code Review Requirements
+- All PRs require at least 1 approval
+- CI must pass (tests, lint, type-check)
+- No direct commits to `main` or `develop`
+- PR description must include: what, why, how to test
+
+### Quality Gates
+1. TypeScript compilation with zero errors
+2. ESLint with zero warnings
+3. All tests passing
+4. Code coverage thresholds met
+5. No security vulnerabilities (npm audit)
+
+## Performance Standards
+
+### Mobile
+- App launch time < 2 seconds
+- List renders at 60 FPS
+- Bundle size monitored and optimized
+- Images lazy-loaded and cached
+- Memory leaks actively prevented
+
+### Backend
+- API response time < 200ms (p95)
+- Database queries optimized with indexes
+- N+1 queries detected and prevented
+- Rate limiting on all public endpoints
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices. Any amendments require:
+1. Written proposal with justification
+2. Team review and approval
+3. Migration plan for existing code
+4. Version bump of this document
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+All code reviews must verify compliance with these principles. Deviations require explicit documentation and approval.
+
+**Version**: 1.0.0 | **Ratified**: 2026-01-13 | **Last Amended**: 2026-01-13
