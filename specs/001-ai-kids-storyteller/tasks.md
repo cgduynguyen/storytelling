@@ -76,16 +76,16 @@
 
 ### Mobile Core Infrastructure
 
-- [ ] T031 Create Expo app entry with providers in apps/mobile/App.tsx
-- [ ] T032 [P] Configure Expo Router navigation in apps/mobile/src/app/\_layout.tsx
-- [ ] T033 [P] Create API client (Axios) in apps/mobile/src/services/api.ts
-- [ ] T034 [P] Create auth store (Zustand) in apps/mobile/src/stores/authStore.ts
-- [ ] T035 [P] Configure TanStack Query client in apps/mobile/src/lib/queryClient.ts
-- [ ] T036 [P] Create secure storage utilities in apps/mobile/src/lib/secureStorage.ts
-- [ ] T037 [P] Create theme and styling foundation in apps/mobile/src/styles/theme.ts
-- [ ] T038 Create loading and error UI components with debounced buttons in apps/mobile/src/components/ui/
-- [ ] T039 Add input sanitization for character names and user inputs in apps/api/src/middleware/sanitize.ts
-- [ ] T040 Create child-friendly error message mapper in apps/mobile/src/utils/errorMessages.ts
+- [x] T031 Create Expo app entry with providers in apps/mobile/App.tsx
+- [x] T032 [P] Configure Expo Router navigation in apps/mobile/src/app/\_layout.tsx
+- [x] T033 [P] Create API client (Axios) in apps/mobile/src/services/api.ts
+- [x] T034 [P] Create auth store (Zustand) in apps/mobile/src/stores/authStore.ts
+- [x] T035 [P] Configure TanStack Query client in apps/mobile/src/lib/queryClient.ts
+- [x] T036 [P] Create secure storage utilities in apps/mobile/src/lib/secureStorage.ts
+- [x] T037 [P] Create theme and styling foundation in apps/mobile/src/styles/theme.ts
+- [x] T038 Create loading and error UI components with debounced buttons in apps/mobile/src/components/ui/
+- [x] T039 Add input sanitization for character names and user inputs in apps/api/src/middleware/sanitize.ts
+- [x] T040 Create child-friendly error message mapper in apps/mobile/src/utils/errorMessages.ts
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
