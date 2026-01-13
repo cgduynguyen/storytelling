@@ -3,7 +3,7 @@
 **Input**: Design documents from `/specs/001-ai-kids-storyteller/`
 **Prerequisites**: plan.md ✅, spec.md ✅, research.md ✅, data-model.md ✅, contracts/ ✅
 
-**Tests**: Not explicitly requested in the feature specification - test tasks are omitted.
+**Tests**: Comprehensive testing tasks included per Constitution Principle IV (Test-First Development).
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -83,7 +83,9 @@
 - [ ] T035 [P] Configure TanStack Query client in apps/mobile/src/lib/queryClient.ts
 - [ ] T036 [P] Create secure storage utilities in apps/mobile/src/lib/secureStorage.ts
 - [ ] T037 [P] Create theme and styling foundation in apps/mobile/src/styles/theme.ts
-- [ ] T038 Create loading and error UI components in apps/mobile/src/components/ui/
+- [ ] T038 Create loading and error UI components with debounced buttons in apps/mobile/src/components/ui/
+- [ ] T039 Add input sanitization for character names and user inputs in apps/api/src/middleware/sanitize.ts
+- [ ] T040 Create child-friendly error message mapper in apps/mobile/src/utils/errorMessages.ts
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -97,29 +99,39 @@
 
 ### API Implementation for US1
 
-- [ ] T039 [P] [US1] Create NVIDIA AI client in apps/api/src/lib/nvidia.ts
-- [ ] T040 [P] [US1] Create story prompt templates per age band in apps/api/src/services/prompts.ts
-- [ ] T041 [US1] Implement StoryGenerationService in apps/api/src/services/storyGeneration.ts
-- [ ] T042 [US1] Create story generation BullMQ worker in apps/api/src/jobs/storyWorker.ts
-- [ ] T043 [US1] Implement story CRUD routes in apps/api/src/routes/stories.ts (POST /stories, GET /stories/:id, GET /stories, DELETE /stories/:id)
-- [ ] T044 [US1] Implement auth routes in apps/api/src/routes/auth.ts (register, login, refresh, logout)
+- [ ] T041 [P] [US1] Create NVIDIA AI client in apps/api/src/lib/nvidia.ts
+- [ ] T042 [P] [US1] Create story prompt templates per age band with content safety guardrails in apps/api/src/services/prompts.ts
+- [ ] T043 [US1] Implement StoryGenerationService with AI safety filtering in apps/api/src/services/storyGeneration.ts
+- [ ] T044 [US1] Create story generation BullMQ worker in apps/api/src/jobs/storyWorker.ts
+- [ ] T045 [US1] Implement story CRUD routes in apps/api/src/routes/stories.ts (POST /stories, GET /stories/:id, GET /stories, DELETE /stories/:id)
+- [ ] T046 [US1] Implement auth routes in apps/api/src/routes/auth.ts (register, login, refresh, logout)
 
 ### Mobile Implementation for US1
 
-- [ ] T045 [P] [US1] Create story hooks (useCreateStory, useStory, useStoryHistory) in apps/mobile/src/hooks/useStory.ts
-- [ ] T046 [P] [US1] Create auth hooks (useLogin, useRegister, useLogout) in apps/mobile/src/hooks/useAuth.ts
-- [ ] T047 [P] [US1] Create story store (current story state) in apps/mobile/src/stores/storyStore.ts
-- [ ] T048 [P] [US1] Create ThemeSelector component in apps/mobile/src/components/story/ThemeSelector.tsx
-- [ ] T049 [P] [US1] Create LengthSelector component in apps/mobile/src/components/story/LengthSelector.tsx
-- [ ] T050 [P] [US1] Create CharacterInput component in apps/mobile/src/components/story/CharacterInput.tsx
-- [ ] T051 [US1] Create CreateStoryScreen in apps/mobile/src/app/(tabs)/create.tsx
-- [ ] T052 [US1] Create StoryViewScreen (display generated story) in apps/mobile/src/app/story/[id].tsx
-- [ ] T053 [US1] Create StoryGeneratingScreen (loading state) in apps/mobile/src/components/story/GeneratingView.tsx
-- [ ] T054 [US1] Create LoginScreen in apps/mobile/src/app/auth/login.tsx
-- [ ] T055 [US1] Create RegisterScreen in apps/mobile/src/app/auth/register.tsx
-- [ ] T056 [US1] Implement story polling for generation status in apps/mobile/src/hooks/useStoryPolling.ts
+- [ ] T047 [P] [US1] Create story hooks (useCreateStory, useStory, useStoryHistory) in apps/mobile/src/hooks/useStory.ts
+- [ ] T048 [P] [US1] Create auth hooks (useLogin, useRegister, useLogout) in apps/mobile/src/hooks/useAuth.ts
+- [ ] T049 [P] [US1] Create story store (current story state) in apps/mobile/src/stores/storyStore.ts
+- [ ] T050 [P] [US1] Create ThemeSelector component in apps/mobile/src/components/story/ThemeSelector.tsx
+- [ ] T051 [P] [US1] Create LengthSelector component in apps/mobile/src/components/story/LengthSelector.tsx
+- [ ] T052 [P] [US1] Create CharacterInput component with sanitization in apps/mobile/src/components/story/CharacterInput.tsx
+- [ ] T053 [US1] Create CreateStoryScreen in apps/mobile/src/app/(tabs)/create.tsx
+- [ ] T054 [US1] Create StoryViewScreen (display generated story) in apps/mobile/src/app/story/[id].tsx
+- [ ] T055 [US1] Create StoryGeneratingScreen (loading state) in apps/mobile/src/components/story/GeneratingView.tsx
+- [ ] T056 [US1] Create LoginScreen in apps/mobile/src/app/auth/login.tsx
+- [ ] T057 [US1] Create RegisterScreen in apps/mobile/src/app/auth/register.tsx
+- [ ] T058 [US1] Implement story polling for generation status in apps/mobile/src/hooks/useStoryPolling.ts
 
-**Checkpoint**: User can register, login, and generate stories with preferences. MVP complete.
+### Testing for US1
+
+- [ ] T059 [P] [US1] Write unit tests for StoryGenerationService (content safety, prompt generation) in apps/api/src/services/__tests__/storyGeneration.test.ts
+- [ ] T060 [P] [US1] Write unit tests for auth services in apps/api/src/services/__tests__/auth.test.ts
+- [ ] T061 [P] [US1] Write integration tests for story routes in apps/api/src/routes/__tests__/stories.test.ts
+- [ ] T062 [P] [US1] Write integration tests for auth routes in apps/api/src/routes/__tests__/auth.test.ts
+- [ ] T063 [P] [US1] Write component tests for ThemeSelector, LengthSelector, CharacterInput in apps/mobile/src/components/story/__tests__/
+- [ ] T064 [P] [US1] Write component tests for LoginScreen and RegisterScreen in apps/mobile/src/app/auth/__tests__/
+- [ ] T065 [US1] Write E2E test for User Story 1 acceptance scenarios in apps/mobile/__tests__/e2e/us1-story-generation.test.ts
+
+**Checkpoint**: User can register, login, and generate stories with preferences. MVP complete. All US1 tests passing.
 
 ---
 
@@ -131,22 +143,29 @@
 
 ### API Implementation for US2
 
-- [ ] T057 [P] [US2] Create edge-tts-universal wrapper in apps/api/src/lib/tts.ts
-- [ ] T058 [US2] Extend StoryGenerationService with TTS generation in apps/api/src/services/storyGeneration.ts
-- [ ] T059 [US2] Update story worker to generate audio after text in apps/api/src/jobs/storyWorker.ts
-- [ ] T060 [US2] Implement audio streaming endpoint GET /stories/:id/audio in apps/api/src/routes/stories.ts
+- [ ] T066 [P] [US2] Create edge-tts-universal wrapper in apps/api/src/lib/tts.ts
+- [ ] T067 [US2] Extend StoryGenerationService with TTS generation in apps/api/src/services/storyGeneration.ts
+- [ ] T068 [US2] Update story worker to generate audio after text in apps/api/src/jobs/storyWorker.ts
+- [ ] T069 [US2] Implement audio streaming endpoint GET /stories/:id/audio in apps/api/src/routes/stories.ts
 
 ### Mobile Implementation for US2
 
-- [ ] T061 [P] [US2] Create audio player service (expo-av) in apps/mobile/src/services/audioPlayer.ts
-- [ ] T062 [P] [US2] Create audio store (playback state) in apps/mobile/src/stores/audioStore.ts
-- [ ] T063 [US2] Create text highlighter utility in apps/mobile/src/utils/textHighlighter.ts
-- [ ] T064 [US2] Create AudioControls component (play/pause/stop) in apps/mobile/src/components/audio/AudioControls.tsx
-- [ ] T065 [US2] Create HighlightedText component in apps/mobile/src/components/story/HighlightedText.tsx
-- [ ] T066 [US2] Update StoryViewScreen with narration UI in apps/mobile/src/app/story/[id].tsx
-- [ ] T067 [US2] Create useAudioNarration hook in apps/mobile/src/hooks/useAudioNarration.ts
+- [ ] T070 [P] [US2] Create audio player service (expo-av) in apps/mobile/src/services/audioPlayer.ts
+- [ ] T071 [P] [US2] Create audio store (playback state) in apps/mobile/src/stores/audioStore.ts
+- [ ] T072 [US2] Create text highlighter utility in apps/mobile/src/utils/textHighlighter.ts
+- [ ] T073 [US2] Create AudioControls component (play/pause/stop) in apps/mobile/src/components/audio/AudioControls.tsx
+- [ ] T074 [US2] Create HighlightedText component in apps/mobile/src/components/story/HighlightedText.tsx
+- [ ] T075 [US2] Update StoryViewScreen with narration UI in apps/mobile/src/app/story/[id].tsx
+- [ ] T076 [US2] Create useAudioNarration hook in apps/mobile/src/hooks/useAudioNarration.ts
 
-**Checkpoint**: Users can listen to stories with synchronized text highlighting. Play/pause/stop working.
+### Testing for US2
+
+- [ ] T077 [P] [US2] Write unit tests for TTS service in apps/api/src/lib/__tests__/tts.test.ts
+- [ ] T078 [P] [US2] Write integration tests for audio streaming endpoint in apps/api/src/routes/__tests__/stories-audio.test.ts
+- [ ] T079 [P] [US2] Write component tests for AudioControls and HighlightedText in apps/mobile/src/components/__tests__/
+- [ ] T080 [US2] Write E2E test for User Story 2 acceptance scenarios in apps/mobile/__tests__/e2e/us2-audio-narration.test.ts
+
+**Checkpoint**: Users can listen to stories with synchronized text highlighting. Play/pause/stop working. All US2 tests passing.
 
 ---
 
@@ -158,21 +177,28 @@
 
 ### API Implementation for US3
 
-- [ ] T068 [US3] Implement library routes in apps/api/src/routes/library.ts (GET /library, POST /library/:id, DELETE /library/:id)
+- [ ] T081 [US3] Implement library routes with 50 story limit enforcement in apps/api/src/routes/library.ts (GET /library, POST /library/:id, DELETE /library/:id)
 
 ### Mobile Implementation for US3
 
-- [ ] T069 [P] [US3] Create library hooks (useLibrary, useSaveToLibrary) in apps/mobile/src/hooks/useLibrary.ts
-- [ ] T070 [P] [US3] Create library store with offline support in apps/mobile/src/stores/libraryStore.ts
-- [ ] T071 [P] [US3] Create local storage service for offline stories in apps/mobile/src/services/localStorage.ts
-- [ ] T072 [US3] Create LibraryScreen in apps/mobile/src/app/(tabs)/library.tsx
-- [ ] T073 [US3] Create StoryCard component for library list in apps/mobile/src/components/library/StoryCard.tsx
-- [ ] T074 [US3] Create SaveButton component in apps/mobile/src/components/story/SaveButton.tsx
-- [ ] T075 [US3] Update StoryViewScreen with save functionality in apps/mobile/src/app/story/[id].tsx
-- [ ] T076 [US3] Implement offline story sync in apps/mobile/src/services/offlineSync.ts
-- [ ] T077 [US3] Create DeleteStoryConfirmation modal in apps/mobile/src/components/library/DeleteConfirmation.tsx
+- [ ] T082 [P] [US3] Create library hooks (useLibrary, useSaveToLibrary) in apps/mobile/src/hooks/useLibrary.ts
+- [ ] T083 [P] [US3] Create library store with offline support in apps/mobile/src/stores/libraryStore.ts
+- [ ] T084 [P] [US3] Create local storage service for offline stories in apps/mobile/src/services/localStorage.ts
+- [ ] T085 [US3] Create LibraryScreen in apps/mobile/src/app/(tabs)/library.tsx
+- [ ] T086 [US3] Create StoryCard component for library list in apps/mobile/src/components/library/StoryCard.tsx
+- [ ] T087 [US3] Create SaveButton component with storage limit notification in apps/mobile/src/components/story/SaveButton.tsx
+- [ ] T088 [US3] Update StoryViewScreen with save functionality in apps/mobile/src/app/story/[id].tsx
+- [ ] T089 [US3] Implement offline story sync in apps/mobile/src/services/offlineSync.ts
+- [ ] T090 [US3] Create DeleteStoryConfirmation modal in apps/mobile/src/components/library/DeleteConfirmation.tsx
 
-**Checkpoint**: Users can save, access, and delete stories from library. Offline access works.
+### Testing for US3
+
+- [ ] T091 [P] [US3] Write integration tests for library routes including limit enforcement in apps/api/src/routes/__tests__/library.test.ts
+- [ ] T092 [P] [US3] Write unit tests for offline sync service in apps/mobile/src/services/__tests__/offlineSync.test.ts
+- [ ] T093 [P] [US3] Write component tests for LibraryScreen and SaveButton in apps/mobile/src/components/__tests__/
+- [ ] T094 [US3] Write E2E test for User Story 3 acceptance scenarios (save, offline, delete) in apps/mobile/__tests__/e2e/us3-library.test.ts
+
+**Checkpoint**: Users can save, access, and delete stories from library. Offline access works. All US3 tests passing.
 
 ---
 
@@ -184,23 +210,31 @@
 
 ### API Implementation for US4
 
-- [ ] T078 [P] [US4] Create parental PIN verification middleware in apps/api/src/middleware/parentalPin.ts
-- [ ] T079 [US4] Implement settings routes in apps/api/src/routes/settings.ts (GET/PATCH /settings/profile, GET/PATCH /settings/parental, PUT /settings/parental/pin, POST /settings/parental/verify)
-- [ ] T080 [US4] Update story generation to respect excluded themes in apps/api/src/services/storyGeneration.ts
+- [ ] T095 [P] [US4] Create parental PIN verification middleware in apps/api/src/middleware/parentalPin.ts
+- [ ] T096 [US4] Implement settings routes in apps/api/src/routes/settings.ts (GET/PATCH /settings/profile, GET/PATCH /settings/parental, PUT /settings/parental/pin, POST /settings/parental/verify)
+- [ ] T097 [US4] Update story generation to respect excluded themes in apps/api/src/services/storyGeneration.ts
 
 ### Mobile Implementation for US4
 
-- [ ] T081 [P] [US4] Create settings hooks (useProfile, useParentalSettings) in apps/mobile/src/hooks/useSettings.ts
-- [ ] T082 [P] [US4] Create settings store in apps/mobile/src/stores/settingsStore.ts
-- [ ] T083 [US4] Create PinEntryScreen in apps/mobile/src/app/settings/pin.tsx
-- [ ] T084 [US4] Create ParentalSettingsScreen in apps/mobile/src/app/settings/parental.tsx
-- [ ] T085 [US4] Create AgeBandSelector component in apps/mobile/src/components/settings/AgeBandSelector.tsx
-- [ ] T086 [US4] Create ThemeExclusionSelector component in apps/mobile/src/components/settings/ThemeExclusionSelector.tsx
-- [ ] T087 [US4] Create StoryHistoryScreen in apps/mobile/src/app/settings/history.tsx
-- [ ] T088 [US4] Create SettingsScreen (main) in apps/mobile/src/app/(tabs)/settings.tsx
-- [ ] T089 [US4] Create ChangePinScreen in apps/mobile/src/app/settings/change-pin.tsx
+- [ ] T098 [P] [US4] Create settings hooks (useProfile, useParentalSettings) in apps/mobile/src/hooks/useSettings.ts
+- [ ] T099 [P] [US4] Create settings store in apps/mobile/src/stores/settingsStore.ts
+- [ ] T100 [US4] Create PinEntryScreen in apps/mobile/src/app/settings/pin.tsx
+- [ ] T101 [US4] Create ParentalSettingsScreen in apps/mobile/src/app/settings/parental.tsx
+- [ ] T102 [US4] Create AgeBandSelector component in apps/mobile/src/components/settings/AgeBandSelector.tsx
+- [ ] T103 [US4] Create ThemeExclusionSelector component in apps/mobile/src/components/settings/ThemeExclusionSelector.tsx
+- [ ] T104 [US4] Create StoryHistoryScreen in apps/mobile/src/app/settings/history.tsx
+- [ ] T105 [US4] Create SettingsScreen (main) in apps/mobile/src/app/(tabs)/settings.tsx
+- [ ] T106 [US4] Create ChangePinScreen in apps/mobile/src/app/settings/change-pin.tsx
 
-**Checkpoint**: Parental controls fully functional. Age band and theme exclusions respected in story generation.
+### Testing for US4
+
+- [ ] T107 [P] [US4] Write unit tests for parental PIN middleware in apps/api/src/middleware/__tests__/parentalPin.test.ts
+- [ ] T108 [P] [US4] Write integration tests for settings routes in apps/api/src/routes/__tests__/settings.test.ts
+- [ ] T109 [P] [US4] Write unit tests for theme exclusion logic in apps/api/src/services/__tests__/storyGeneration-exclusions.test.ts
+- [ ] T110 [P] [US4] Write component tests for parental settings screens in apps/mobile/src/app/settings/__tests__/
+- [ ] T111 [US4] Write E2E test for User Story 4 acceptance scenarios (PIN, age band, exclusions) in apps/mobile/__tests__/e2e/us4-parental-controls.test.ts
+
+**Checkpoint**: Parental controls fully functional. Age band and theme exclusions respected in story generation. All US4 tests passing.
 
 ---
 
@@ -212,43 +246,53 @@
 
 ### API Implementation for US5
 
-- [ ] T090 [US5] Extend story generation for interactive mode in apps/api/src/services/storyGeneration.ts
-- [ ] T091 [US5] Create interactive story prompt templates in apps/api/src/services/prompts.ts
-- [ ] T092 [US5] Implement segment audio generation in apps/api/src/jobs/storyWorker.ts
-- [ ] T093 [US5] Implement segments endpoint GET /stories/:id/segments in apps/api/src/routes/stories.ts
-- [ ] T094 [US5] Implement segment audio endpoint GET /stories/:id/segments/:segmentId/audio in apps/api/src/routes/stories.ts
+- [ ] T112 [US5] Extend story generation for interactive mode with minimum 3 choice points validation in apps/api/src/services/storyGeneration.ts
+- [ ] T113 [US5] Create interactive story prompt templates in apps/api/src/services/prompts.ts
+- [ ] T114 [US5] Implement segment audio generation in apps/api/src/jobs/storyWorker.ts
+- [ ] T115 [US5] Implement segments endpoint GET /stories/:id/segments in apps/api/src/routes/stories.ts
+- [ ] T116 [US5] Implement segment audio endpoint GET /stories/:id/segments/:segmentId/audio in apps/api/src/routes/stories.ts
 
 ### Mobile Implementation for US5
 
-- [ ] T095 [P] [US5] Create interactive story hooks (useSegments, useChoice) in apps/mobile/src/hooks/useInteractiveStory.ts
-- [ ] T096 [P] [US5] Create interactive story store (current segment, path) in apps/mobile/src/stores/interactiveStore.ts
-- [ ] T097 [US5] Create ChoiceButton component in apps/mobile/src/components/story/ChoiceButton.tsx
-- [ ] T098 [US5] Create InteractiveStoryScreen in apps/mobile/src/app/story/interactive/[id].tsx
-- [ ] T099 [US5] Create SegmentView component in apps/mobile/src/components/story/SegmentView.tsx
-- [ ] T100 [US5] Update CreateStoryScreen with interactive mode toggle in apps/mobile/src/app/(tabs)/create.tsx
-- [ ] T101 [US5] Create story path tracker utility in apps/mobile/src/utils/storyPath.ts
+- [ ] T117 [P] [US5] Create interactive story hooks (useSegments, useChoice) in apps/mobile/src/hooks/useInteractiveStory.ts
+- [ ] T118 [P] [US5] Create interactive story store (current segment, path) in apps/mobile/src/stores/interactiveStore.ts
+- [ ] T119 [US5] Create ChoiceButton component in apps/mobile/src/components/story/ChoiceButton.tsx
+- [ ] T120 [US5] Create InteractiveStoryScreen in apps/mobile/src/app/story/interactive/[id].tsx
+- [ ] T121 [US5] Create SegmentView component in apps/mobile/src/components/story/SegmentView.tsx
+- [ ] T122 [US5] Update CreateStoryScreen with interactive mode toggle in apps/mobile/src/app/(tabs)/create.tsx
+- [ ] T123 [US5] Create story path tracker utility in apps/mobile/src/utils/storyPath.ts
 
-**Checkpoint**: Interactive stories fully functional. Multiple playthroughs with different paths work.
+### Testing for US5
+
+- [ ] T124 [P] [US5] Write unit tests for interactive story generation with choice point validation in apps/api/src/services/__tests__/storyGeneration-interactive.test.ts
+- [ ] T125 [P] [US5] Write integration tests for segments endpoints in apps/api/src/routes/__tests__/stories-segments.test.ts
+- [ ] T126 [P] [US5] Write component tests for interactive story components in apps/mobile/src/components/story/__tests__/
+- [ ] T127 [US5] Write E2E test for User Story 5 acceptance scenarios (choice points, replay) in apps/mobile/__tests__/e2e/us5-interactive-stories.test.ts
+
+**Checkpoint**: Interactive stories fully functional. Multiple playthroughs with different paths work. All US5 tests passing.
 
 ---
 
 ## Phase 8: Polish & Cross-Cutting Concerns
 
-**Purpose**: Improvements that affect multiple user stories
+**Purpose**: Final improvements and documentation
 
-- [ ] T102 [P] Create TTS voice selection endpoint GET /voices in apps/api/src/routes/settings.ts
-- [ ] T103 [P] Add rate limiting middleware in apps/api/src/middleware/rateLimit.ts
-- [ ] T104 [P] Create VoiceSelector component in apps/mobile/src/components/settings/VoiceSelector.tsx
-- [ ] T105 Implement offline queue for story generation requests in apps/mobile/src/services/offlineQueue.ts
-- [ ] T106 Add retry logic for failed story generations in apps/api/src/jobs/storyWorker.ts
-- [ ] T107 Create app onboarding flow in apps/mobile/src/app/onboarding/
-- [ ] T108 Add input sanitization for character names in apps/api/src/middleware/sanitize.ts
-- [ ] T109 Implement story limit enforcement (50 max) in apps/api/src/routes/library.ts
-- [ ] T110 Create child-friendly error messages in apps/mobile/src/utils/errorMessages.ts
-- [ ] T111 Add debouncing for rapid button taps in apps/mobile/src/hooks/useDebounce.ts
-- [ ] T112 [P] Add comprehensive logging throughout API services
-- [ ] T113 Run quickstart.md validation and fix any issues
-- [ ] T114 Update README.md with setup and development instructions
+- [ ] T128 Implement offline queue for story generation requests in apps/mobile/src/services/offlineQueue.ts
+- [ ] T129 Add retry logic for failed story generations in apps/api/src/jobs/storyWorker.ts
+- [ ] T130 Run quickstart.md validation and fix any issues
+- [ ] T131 Update README.md with setup and development instructions
+
+## Phase 9: Performance & Code Coverage
+
+**Purpose**: Validate success criteria and ensure quality gates
+
+- [ ] T132 [P] Add performance tests for SC-001 (30s generation time) in apps/api/__tests__/performance/story-generation.test.ts
+- [ ] T133 [P] Add performance tests for SC-003 (5s audio start) in apps/mobile/__tests__/performance/audio-playback.test.ts
+- [ ] T134 [P] Add performance tests for SC-007 (2s offline access) in apps/mobile/__tests__/performance/offline-access.test.ts
+- [ ] T135 Create content safety audit task to validate SC-002 (95% pass rate) in apps/api/__tests__/audit/content-safety.test.ts
+- [ ] T136 Verify code coverage meets 80% threshold across all packages
+- [ ] T137 Run full E2E test suite across all user stories
+- [ ] T138 Generate test coverage report and address gaps
 
 ---
 
@@ -268,10 +312,10 @@
 | Story | Depends On | Can Start After |
 |-------|------------|-----------------|
 | US1 (Generate Story) | Foundational only | Phase 2 complete |
-| US2 (Audio Narration) | US1 (needs story to narrate) | T041-T044 complete |
-| US3 (Library) | US1 (needs stories to save) | T043 complete |
-| US4 (Parental Controls) | US1 (affects story generation) | T041 complete |
-| US5 (Interactive) | US1, US2 (extends both) | T041, T058 complete |
+| US2 (Audio Narration) | US1 (needs story to narrate) | T043-T046 complete |
+| US3 (Library) | US1 (needs stories to save) | T045 complete |
+| US4 (Parental Controls) | US1 (affects story generation) | T043 complete |
+| US5 (Interactive) | US1, US2 (extends both) | T043, T067 complete |
 
 ### Within Each User Story
 
@@ -303,20 +347,23 @@
 
 ```bash
 # After Phase 2 is complete, launch API tasks in parallel:
-Task T039: "Create NVIDIA AI client in apps/api/src/lib/nvidia.ts"
-Task T040: "Create story prompt templates in apps/api/src/services/prompts.ts"
+Task T041: "Create NVIDIA AI client in apps/api/src/lib/nvidia.ts"
+Task T042: "Create story prompt templates in apps/api/src/services/prompts.ts"
 
 # Then sequentially:
-Task T041: "Implement StoryGenerationService" (depends on T039, T040)
-Task T042: "Create story generation worker" (depends on T041)
-Task T043: "Implement story routes" (depends on T041)
-Task T044: "Implement auth routes"
+Task T043: "Implement StoryGenerationService" (depends on T041, T042)
+Task T044: "Create story generation worker" (depends on T043)
+Task T045: "Implement story routes" (depends on T043)
+Task T046: "Implement auth routes"
 
-# Mobile tasks can start after T043, with parallel opportunities:
-Task T045: "Create story hooks"
-Task T046: "Create auth hooks"
-Task T047: "Create story store"
-Task T048, T049, T050: UI components (parallel)
+# Mobile tasks can start after T045, with parallel opportunities:
+Task T047: "Create story hooks"
+Task T048: "Create auth hooks"
+Task T049: "Create story store"
+Task T050, T051, T052: UI components (parallel)
+
+# Then testing tasks:
+Task T059-T065: Unit, integration, and E2E tests (parallel where possible)
 
 # Then screen integration sequentially
 ```
