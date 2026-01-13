@@ -56,9 +56,9 @@
 
 ### Database Foundation
 
-- [ ] T017 Create Prisma schema with all models in apps/api/prisma/schema.prisma (User, ParentalSettings, Story, StorySegment, Choice)
-- [ ] T018 Generate initial Prisma migration in apps/api/prisma/migrations/
-- [ ] T019 Create Prisma client singleton in apps/api/src/lib/prisma.ts
+- [x] T017 Create Prisma schema with all models in apps/api/prisma/schema.prisma (User, ParentalSettings, Story, StorySegment, Choice)
+- [x] T018 Generate initial Prisma migration in apps/api/prisma/migrations/
+- [x] T019 Create Prisma client singleton in apps/api/src/lib/prisma.ts
 
 ### API Core Infrastructure
 
