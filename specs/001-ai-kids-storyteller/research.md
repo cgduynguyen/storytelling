@@ -17,13 +17,14 @@ This document consolidates research findings for building an AI-powered storytel
 
 **Recommended Models** (from build.nvidia.com):
 
-| Model | Use Case | Notes |
-|-------|----------|-------|
-| `meta/llama-3.3-70b-instruct` | Primary story generation | Strong reasoning, creative text, instruction following |
-| `meta/llama-3.1-8b-instruct` | Fallback/cost optimization | Smaller, faster, still capable |
-| `nvidia/llama-3.1-nemotron-70b-instruct` | Alternative | Enhanced instruction following |
+| Model                                    | Use Case                   | Notes                                                  |
+| ---------------------------------------- | -------------------------- | ------------------------------------------------------ |
+| `meta/llama-3.3-70b-instruct`            | Primary story generation   | Strong reasoning, creative text, instruction following |
+| `meta/llama-3.1-8b-instruct`             | Fallback/cost optimization | Smaller, faster, still capable                         |
+| `nvidia/llama-3.1-nemotron-70b-instruct` | Alternative                | Enhanced instruction following                         |
 
 **Implementation Pattern**:
+
 ```typescript
 import OpenAI from 'openai';
 
@@ -35,18 +36,20 @@ const client = new OpenAI({
 const completion = await client.chat.completions.create({
   model: 'meta/llama-3.3-70b-instruct',
   messages: [{ role: 'user', content: storyPrompt }],
-  temperature: 0.7,  // Creativity balance
-  max_tokens: 2048,  // ~1000 words for long stories
+  temperature: 0.7, // Creativity balance
+  max_tokens: 2048, // ~1000 words for long stories
   stream: true,
 });
 ```
 
 **Content Safety Considerations**:
+
 - Use system prompts with explicit child-safety instructions
 - Consider `nvidia/llama-3.1-nemoguard-8b-content-safety` for post-generation filtering
 - Age-band specific vocabulary and theme constraints in prompts
 
 **Alternatives Considered**:
+
 - OpenAI GPT-4: Higher cost, potential rate limits
 - Local models: Latency and infrastructure complexity
 - Other cloud APIs: Less OpenAI SDK compatibility
@@ -60,6 +63,7 @@ const completion = await client.chat.completions.create({
 **Rationale**: Free Microsoft Edge TTS service with high-quality neural voices, no API keys required, works in Node.js and React Native environments.
 
 **Key Features**:
+
 - 🆓 Free (uses Microsoft Edge's TTS service)
 - 🎵 High-quality neural voices
 - 🌍 Multiple languages and voice options
@@ -75,6 +79,7 @@ const completion = await client.chat.completions.create({
 | `en-US-EmmaMultilingualNeural` | English (Multi) | Clear, expressive |
 
 **Implementation Pattern (Node.js)**:
+
 ```typescript
 import { EdgeTTS } from 'edge-tts-universal';
 
@@ -90,6 +95,7 @@ const wordBoundaries = result.metadata?.wordBoundaries || [];
 ```
 
 **Alternatives Considered**:
+
 - Google Cloud TTS: Requires API key, cost per character
 - Amazon Polly: Same as above
 - Expo Speech API: Lower quality, no word boundaries
@@ -105,25 +111,27 @@ const wordBoundaries = result.metadata?.wordBoundaries || [];
 
 **Key Libraries**:
 
-| Category | Library | Purpose |
-|----------|---------|---------|
-| Navigation | `@react-navigation/native` v6+ | Screen navigation |
-| State (Global) | `zustand` | Simple, performant state |
-| State (Server) | `@tanstack/react-query` | API caching, offline |
-| Forms | `react-hook-form` + `zod` | Validation |
-| Styling | `nativewind` | Tailwind CSS |
-| HTTP | `axios` | API calls |
-| Storage | `@react-native-async-storage/async-storage` | Simple data |
-| Storage (Fast) | `react-native-mmkv` | Performance-critical |
-| Audio | `expo-av` | Audio playback |
+| Category       | Library                                     | Purpose                  |
+| -------------- | ------------------------------------------- | ------------------------ |
+| Navigation     | `@react-navigation/native` v6+              | Screen navigation        |
+| State (Global) | `zustand`                                   | Simple, performant state |
+| State (Server) | `@tanstack/react-query`                     | API caching, offline     |
+| Forms          | `react-hook-form` + `zod`                   | Validation               |
+| Styling        | `nativewind`                                | Tailwind CSS             |
+| HTTP           | `axios`                                     | API calls                |
+| Storage        | `@react-native-async-storage/async-storage` | Simple data              |
+| Storage (Fast) | `react-native-mmkv`                         | Performance-critical     |
+| Audio          | `expo-av`                                   | Audio playback           |
 
 **Offline Strategy**:
+
 - TanStack Query with persistence for API cache
 - Stories saved with audio to local storage
 - AsyncStorage for settings and metadata
 - MMKV for frequently accessed data
 
 **Alternatives Considered**:
+
 - React Native CLI: More native control but complex setup
 - Flutter: Different ecosystem, team skill mismatch
 - Native iOS/Android: 2x development effort
@@ -138,18 +146,19 @@ const wordBoundaries = result.metadata?.wordBoundaries || [];
 
 **Key Components**:
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| Framework | Express.js | HTTP server, routing |
-| ORM | Prisma | Type-safe database access |
-| Database | PostgreSQL | Primary data store |
-| Cache | Redis | Sessions, rate limiting |
-| Queue | BullMQ | Background jobs (TTS generation) |
-| Logging | Pino | Structured JSON logs |
-| Validation | Zod | Runtime validation |
+| Component  | Technology | Purpose                          |
+| ---------- | ---------- | -------------------------------- |
+| Framework  | Express.js | HTTP server, routing             |
+| ORM        | Prisma     | Type-safe database access        |
+| Database   | PostgreSQL | Primary data store               |
+| Cache      | Redis      | Sessions, rate limiting          |
+| Queue      | BullMQ     | Background jobs (TTS generation) |
+| Logging    | Pino       | Structured JSON logs             |
+| Validation | Zod        | Runtime validation               |
 
 **Background Job Strategy**:
 Story generation workflow:
+
 1. User requests story → API creates job
 2. BullMQ worker processes:
    - Generate story text (NVIDIA API)
@@ -158,6 +167,7 @@ Story generation workflow:
 3. Client polls or receives webhook
 
 **Alternatives Considered**:
+
 - NestJS: More opinionated, steeper learning curve
 - Fastify: Better perf, less middleware ecosystem
 - Serverless: Cold starts problematic for streaming
@@ -171,6 +181,7 @@ Story generation workflow:
 **Rationale**: Pre-generating audio during story creation ensures instant playback and offline availability, trading storage for user experience.
 
 **Storage Estimates**:
+
 - Short story (~300 words): ~500KB MP3
 - Medium story (~600 words): ~800KB MP3
 - Long story (~1000 words): ~1.2MB MP3
@@ -183,11 +194,13 @@ Story generation workflow:
 | Mobile | FileSystem + AsyncStorage | MP3 files + metadata |
 
 **Offline Flow**:
+
 1. Story saved → audio file stored locally
 2. Metadata in AsyncStorage references file path
 3. Playback reads from local file
 
 **Alternatives Considered**:
+
 - Stream from server: Requires connectivity
 - Generate on-device: High latency, battery drain
 - CDN storage: Additional infrastructure
@@ -201,12 +214,14 @@ Story generation workflow:
 **Rationale**: Standard, stateless auth that works well with mobile apps. Refresh tokens stored securely on device.
 
 **Implementation**:
+
 - Access tokens: 15-minute expiry
 - Refresh tokens: 7-day expiry, rotation on use
 - Secure storage: Expo SecureStore
 - Parental PIN: Separate encrypted storage
 
 **Parental Control Flow**:
+
 1. Parent sets 4-digit PIN during setup
 2. PIN required to access Settings
 3. Age band stored in user profile
@@ -219,6 +234,7 @@ Story generation workflow:
 ### Decision: Multi-layer safety approach
 
 **Layers**:
+
 1. **Prompt Engineering**: System prompts with explicit safety instructions
 2. **Age-Band Context**: Vocabulary/theme constraints per age group
 3. **Post-Generation Filter**: Optional content safety model
@@ -240,6 +256,7 @@ Story generation workflow:
 **Rationale**: Pre-generate 2-3 choices at branch points during story creation. Limits complexity while providing meaningful choices.
 
 **Data Structure**:
+
 ```typescript
 interface StorySegment {
   id: string;
@@ -257,6 +274,7 @@ interface Choice {
 ```
 
 **Generation Strategy**:
+
 - Generate main story with 3 branch points
 - At each branch, generate 2-3 short continuations
 - Total segments: ~10-15 per interactive story
@@ -266,17 +284,17 @@ interface Choice {
 
 ## Key Decisions Summary
 
-| Decision | Choice | Confidence |
-|----------|--------|------------|
-| AI Provider | NVIDIA API (OpenAI SDK) | High |
-| AI Model | meta/llama-3.3-70b-instruct | Medium (test required) |
-| TTS Provider | edge-tts-universal | High |
-| Mobile Framework | React Native + Expo | High |
-| State Management | Zustand + TanStack Query | High |
-| Backend Framework | Express.js | High |
-| Database | PostgreSQL + Prisma | High |
-| Audio Storage | Pre-generated, local storage | High |
-| Auth | JWT with refresh rotation | High |
+| Decision          | Choice                       | Confidence             |
+| ----------------- | ---------------------------- | ---------------------- |
+| AI Provider       | NVIDIA API (OpenAI SDK)      | High                   |
+| AI Model          | meta/llama-3.3-70b-instruct  | Medium (test required) |
+| TTS Provider      | edge-tts-universal           | High                   |
+| Mobile Framework  | React Native + Expo          | High                   |
+| State Management  | Zustand + TanStack Query     | High                   |
+| Backend Framework | Express.js                   | High                   |
+| Database          | PostgreSQL + Prisma          | High                   |
+| Audio Storage     | Pre-generated, local storage | High                   |
+| Auth              | JWT with refresh rotation    | High                   |
 
 ---
 

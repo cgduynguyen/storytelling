@@ -21,11 +21,13 @@ cd apps/api && pnpm db:studio   # Open Prisma Studio
 ## Architecture Patterns
 
 ### Monorepo Structure
+
 - Import shared types via `@storyteller/shared` (workspace dependency)
 - Each app has its own `tsconfig.json` extending root config
 - TypeScript strict mode enabled everywhere
 
 ### API (`apps/api`)
+
 - **Routes**: `src/routes/` - Express routers grouped by resource
 - **Services**: `src/services/` - Business logic (story generation, TTS)
 - **Jobs**: `src/jobs/` - BullMQ workers for async story/audio generation
@@ -33,30 +35,36 @@ cd apps/api && pnpm db:studio   # Open Prisma Studio
 - **Database**: Prisma ORM with PostgreSQL; schema in `prisma/schema.prisma`
 
 ### Mobile (`apps/mobile`)
+
 - **Expo Router**: File-based routing in `src/app/` (tabs in `(tabs)/`)
 - **State**: Zustand stores in `src/stores/`, TanStack Query for server state
 - **Components**: `src/components/ui/` for reusable, `src/components/story/` for feature-specific
 - **Hooks**: `src/hooks/` wraps API calls with TanStack Query mutations/queries
 
 ### Data Flow
+
 1. Mobile → API endpoint → Zod validation → Service → Database/Queue
 2. Long tasks (story generation, TTS): API returns `202` + job ID → BullMQ worker processes → Mobile polls for completion
 
 ## Key Implementation Details
 
 ### Content Safety
+
 - Stories filtered by `AgeBand` enum: `AGE_3_5`, `AGE_6_8`, `AGE_9_10`
 - Prompt templates in `apps/api/src/services/prompts.ts` include safety guardrails
 - Input sanitization middleware for character names and user inputs
 
 ### Story Generation Pipeline
+
 1. POST `/api/v1/stories` → creates Story with `status: PENDING`
 2. BullMQ job generates story via NVIDIA API + audio via edge-tts
 3. Client polls `GET /api/v1/stories/:id` until `status: COMPLETED`
 4. Audio endpoint: `GET /api/v1/stories/:id/audio`
 
 ### Validation Pattern
+
 All API inputs validated with Zod schemas from `@storyteller/shared`:
+
 ```typescript
 import { createStorySchema } from '@storyteller/shared';
 app.post('/stories', validate(createStorySchema), handler);
@@ -77,10 +85,10 @@ app.post('/stories', validate(createStorySchema), handler);
 ## Environment Variables
 
 API requires `.env` with:
+
 - `DATABASE_URL` - PostgreSQL connection
 - `REDIS_HOST`, `REDIS_PORT` - Redis for BullMQ
 - `NVIDIA_API_KEY` - Story generation AI
 - `JWT_SECRET` - Auth tokens
 
 Copy `.env.example` files in each app as starting point.
-

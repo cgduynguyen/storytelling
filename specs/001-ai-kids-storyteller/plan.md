@@ -12,52 +12,54 @@ Build a child-friendly storytelling application that generates age-appropriate s
 ## Technical Context
 
 **Language/Version**: TypeScript 5.x (strict mode), Node.js 20 LTS  
-**Primary Dependencies**: 
+**Primary Dependencies**:
+
 - Mobile: React Native + Expo (managed workflow), React Navigation v6+, NativeWind/StyleSheet, React Hook Form + Zod, Axios, Zustand, TanStack Query, AsyncStorage/MMKV
 - Backend: Express.js/Fastify, Prisma ORM, Redis, BullMQ, Pino logging
 - AI: OpenAI SDK (NVIDIA API compatible), edge-tts-universal  
-**Storage**: PostgreSQL (via Prisma), Redis (caching/sessions), AsyncStorage/MMKV (mobile)  
-**Testing**: Jest + React Native Testing Library (mobile), Jest (backend)
-**Target Platform**: iOS 15+, Android 10+ (mobile), Linux server (backend)  
-**Project Type**: mobile + api (monorepo structure)  
-**Performance Goals**: 
+  **Storage**: PostgreSQL (via Prisma), Redis (caching/sessions), AsyncStorage/MMKV (mobile)  
+  **Testing**: Jest + React Native Testing Library (mobile), Jest (backend)
+  **Target Platform**: iOS 15+, Android 10+ (mobile), Linux server (backend)  
+  **Project Type**: mobile + api (monorepo structure)  
+  **Performance Goals**:
 - Story generation < 30 seconds
 - Audio narration start < 5 seconds
 - API response time < 200ms (p95)
 - Mobile: 60 FPS renders, < 2s app launch  
-**Constraints**: 
+  **Constraints**:
 - Offline-capable for saved stories
 - Max 50 stories per user (~15-50MB with audio)
 - Child-safe content (AI guardrails)
 - Age-appropriate UI for 3-10 year olds  
-**Scale/Scope**: Initial launch targeting small user base, ~10-15 screens
+  **Scale/Scope**: Initial launch targeting small user base, ~10-15 screens
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
 ### Pre-Design Evaluation ✅
 
-| Principle | Status | Notes |
-|-----------|--------|-------|
-| I. Monorepo Architecture | ✅ PASS | Mobile + Backend + Shared packages structure |
-| II. Type Safety First | ✅ PASS | TypeScript strict mode, Zod for runtime validation |
-| III. API Contract-Driven | ✅ PASS | OpenAPI specs in `/contracts/` directory |
-| IV. Test-First Development | ✅ PASS | Jest + RTL (mobile), Jest (backend) |
-| V. State Management | ✅ PASS | Zustand (global), TanStack Query (server state) |
-| VI. Error Handling | ✅ PASS | Typed errors, offline-first patterns |
-| VII. Security Standards | ✅ PASS | JWT auth, input validation, env secrets |
+| Principle                  | Status  | Notes                                              |
+| -------------------------- | ------- | -------------------------------------------------- |
+| I. Monorepo Architecture   | ✅ PASS | Mobile + Backend + Shared packages structure       |
+| II. Type Safety First      | ✅ PASS | TypeScript strict mode, Zod for runtime validation |
+| III. API Contract-Driven   | ✅ PASS | OpenAPI specs in `/contracts/` directory           |
+| IV. Test-First Development | ✅ PASS | Jest + RTL (mobile), Jest (backend)                |
+| V. State Management        | ✅ PASS | Zustand (global), TanStack Query (server state)    |
+| VI. Error Handling         | ✅ PASS | Typed errors, offline-first patterns               |
+| VII. Security Standards    | ✅ PASS | JWT auth, input validation, env secrets            |
 
 ### Post-Design Evaluation ✅
 
-| Artifact | Compliance | Verification |
-|----------|------------|--------------|
-| data-model.md | ✅ PASS | Prisma schema with TypeScript types, Zod schemas defined |
-| contracts/api.yaml | ✅ PASS | OpenAPI 3.0 spec with all endpoints documented |
-| research.md | ✅ PASS | Technology decisions align with Constitution stack |
-| quickstart.md | ✅ PASS | Development setup follows Constitution workflow |
+| Artifact           | Compliance | Verification                                             |
+| ------------------ | ---------- | -------------------------------------------------------- |
+| data-model.md      | ✅ PASS    | Prisma schema with TypeScript types, Zod schemas defined |
+| contracts/api.yaml | ✅ PASS    | OpenAPI 3.0 spec with all endpoints documented           |
+| research.md        | ✅ PASS    | Technology decisions align with Constitution stack       |
+| quickstart.md      | ✅ PASS    | Development setup follows Constitution workflow          |
 
 **Technology Stack Compliance:**
+
 - Mobile: ✅ React Native + Expo, React Navigation, NativeWind, React Hook Form + Zod, Axios, AsyncStorage/MMKV
 - Backend: ✅ Node.js 20 LTS, Express.js/Fastify, PostgreSQL + Prisma, Redis, BullMQ, Pino
 - Shared: ✅ TypeScript 5.x, pnpm workspaces, Zod schemas, ESLint + Prettier
@@ -121,4 +123,4 @@ apps/
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-*No violations detected. All Constitution principles are satisfied.*
+_No violations detected. All Constitution principles are satisfied._

@@ -148,6 +148,7 @@ pnpm start
 ```
 
 Scan QR code with Expo Go app, or press:
+
 - `i` for iOS Simulator
 - `a` for Android Emulator
 
@@ -245,7 +246,7 @@ pnpm test
 pnpm lint
 
 # Type check
-pnpm typecheck
+pnpm type-check
 ```
 
 ### API

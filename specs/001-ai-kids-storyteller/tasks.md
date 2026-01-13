@@ -26,15 +26,15 @@
 
 **Purpose**: Initialize monorepo structure, dependencies, and configuration files
 
-- [ ] T001 Create monorepo structure with pnpm workspaces in package.json and pnpm-workspace.yaml
-- [ ] T002 [P] Initialize shared package in packages/shared/package.json with TypeScript config
-- [ ] T003 [P] Initialize API package in apps/api/package.json with Express.js, Prisma, BullMQ dependencies
-- [ ] T004 [P] Initialize mobile package in apps/mobile/package.json with Expo, React Navigation, Zustand, TanStack Query
-- [ ] T005 [P] Configure TypeScript in tsconfig.json (root) with project references
-- [ ] T006 [P] Configure ESLint in .eslintrc.js with shared rules
-- [ ] T007 [P] Configure Prettier in .prettierrc
-- [ ] T008 [P] Create .env.example files for apps/api/.env.example and apps/mobile/.env.example
-- [ ] T009 Create docker-compose.yaml with PostgreSQL and Redis services
+- [x] T001 Create monorepo structure with pnpm workspaces in package.json and pnpm-workspace.yaml
+- [x] T002 [P] Initialize shared package in packages/shared/package.json with TypeScript config
+- [x] T003 [P] Initialize API package in apps/api/package.json with Express.js, Prisma, BullMQ dependencies
+- [x] T004 [P] Initialize mobile package in apps/mobile/package.json with Expo, React Navigation, Zustand, TanStack Query
+- [x] T005 [P] Configure TypeScript in tsconfig.json (root) with project references
+- [x] T006 [P] Configure ESLint in .eslintrc.js with shared rules
+- [x] T007 [P] Configure Prettier in .prettierrc
+- [x] T008 [P] Create .env.example files for apps/api/.env.example and apps/mobile/.env.example
+- [x] T009 Create docker-compose.yaml with PostgreSQL and Redis services
 
 ---
 
@@ -77,7 +77,7 @@
 ### Mobile Core Infrastructure
 
 - [ ] T031 Create Expo app entry with providers in apps/mobile/App.tsx
-- [ ] T032 [P] Configure Expo Router navigation in apps/mobile/src/app/_layout.tsx
+- [ ] T032 [P] Configure Expo Router navigation in apps/mobile/src/app/\_layout.tsx
 - [ ] T033 [P] Create API client (Axios) in apps/mobile/src/services/api.ts
 - [ ] T034 [P] Create auth store (Zustand) in apps/mobile/src/stores/authStore.ts
 - [ ] T035 [P] Configure TanStack Query client in apps/mobile/src/lib/queryClient.ts
@@ -123,13 +123,13 @@
 
 ### Testing for US1
 
-- [ ] T059 [P] [US1] Write unit tests for StoryGenerationService (content safety, prompt generation) in apps/api/src/services/__tests__/storyGeneration.test.ts
-- [ ] T060 [P] [US1] Write unit tests for auth services in apps/api/src/services/__tests__/auth.test.ts
-- [ ] T061 [P] [US1] Write integration tests for story routes in apps/api/src/routes/__tests__/stories.test.ts
-- [ ] T062 [P] [US1] Write integration tests for auth routes in apps/api/src/routes/__tests__/auth.test.ts
-- [ ] T063 [P] [US1] Write component tests for ThemeSelector, LengthSelector, CharacterInput in apps/mobile/src/components/story/__tests__/
-- [ ] T064 [P] [US1] Write component tests for LoginScreen and RegisterScreen in apps/mobile/src/app/auth/__tests__/
-- [ ] T065 [US1] Write E2E test for User Story 1 acceptance scenarios in apps/mobile/__tests__/e2e/us1-story-generation.test.ts
+- [ ] T059 [P] [US1] Write unit tests for StoryGenerationService (content safety, prompt generation) in apps/api/src/services/**tests**/storyGeneration.test.ts
+- [ ] T060 [P] [US1] Write unit tests for auth services in apps/api/src/services/**tests**/auth.test.ts
+- [ ] T061 [P] [US1] Write integration tests for story routes in apps/api/src/routes/**tests**/stories.test.ts
+- [ ] T062 [P] [US1] Write integration tests for auth routes in apps/api/src/routes/**tests**/auth.test.ts
+- [ ] T063 [P] [US1] Write component tests for ThemeSelector, LengthSelector, CharacterInput in apps/mobile/src/components/story/**tests**/
+- [ ] T064 [P] [US1] Write component tests for LoginScreen and RegisterScreen in apps/mobile/src/app/auth/**tests**/
+- [ ] T065 [US1] Write E2E test for User Story 1 acceptance scenarios in apps/mobile/**tests**/e2e/us1-story-generation.test.ts
 
 **Checkpoint**: User can register, login, and generate stories with preferences. MVP complete. All US1 tests passing.
 
@@ -160,10 +160,10 @@
 
 ### Testing for US2
 
-- [ ] T077 [P] [US2] Write unit tests for TTS service in apps/api/src/lib/__tests__/tts.test.ts
-- [ ] T078 [P] [US2] Write integration tests for audio streaming endpoint in apps/api/src/routes/__tests__/stories-audio.test.ts
-- [ ] T079 [P] [US2] Write component tests for AudioControls and HighlightedText in apps/mobile/src/components/__tests__/
-- [ ] T080 [US2] Write E2E test for User Story 2 acceptance scenarios in apps/mobile/__tests__/e2e/us2-audio-narration.test.ts
+- [ ] T077 [P] [US2] Write unit tests for TTS service in apps/api/src/lib/**tests**/tts.test.ts
+- [ ] T078 [P] [US2] Write integration tests for audio streaming endpoint in apps/api/src/routes/**tests**/stories-audio.test.ts
+- [ ] T079 [P] [US2] Write component tests for AudioControls and HighlightedText in apps/mobile/src/components/**tests**/
+- [ ] T080 [US2] Write E2E test for User Story 2 acceptance scenarios in apps/mobile/**tests**/e2e/us2-audio-narration.test.ts
 
 **Checkpoint**: Users can listen to stories with synchronized text highlighting. Play/pause/stop working. All US2 tests passing.
 
@@ -193,10 +193,10 @@
 
 ### Testing for US3
 
-- [ ] T091 [P] [US3] Write integration tests for library routes including limit enforcement in apps/api/src/routes/__tests__/library.test.ts
-- [ ] T092 [P] [US3] Write unit tests for offline sync service in apps/mobile/src/services/__tests__/offlineSync.test.ts
-- [ ] T093 [P] [US3] Write component tests for LibraryScreen and SaveButton in apps/mobile/src/components/__tests__/
-- [ ] T094 [US3] Write E2E test for User Story 3 acceptance scenarios (save, offline, delete) in apps/mobile/__tests__/e2e/us3-library.test.ts
+- [ ] T091 [P] [US3] Write integration tests for library routes including limit enforcement in apps/api/src/routes/**tests**/library.test.ts
+- [ ] T092 [P] [US3] Write unit tests for offline sync service in apps/mobile/src/services/**tests**/offlineSync.test.ts
+- [ ] T093 [P] [US3] Write component tests for LibraryScreen and SaveButton in apps/mobile/src/components/**tests**/
+- [ ] T094 [US3] Write E2E test for User Story 3 acceptance scenarios (save, offline, delete) in apps/mobile/**tests**/e2e/us3-library.test.ts
 
 **Checkpoint**: Users can save, access, and delete stories from library. Offline access works. All US3 tests passing.
 
@@ -228,11 +228,11 @@
 
 ### Testing for US4
 
-- [ ] T107 [P] [US4] Write unit tests for parental PIN middleware in apps/api/src/middleware/__tests__/parentalPin.test.ts
-- [ ] T108 [P] [US4] Write integration tests for settings routes in apps/api/src/routes/__tests__/settings.test.ts
-- [ ] T109 [P] [US4] Write unit tests for theme exclusion logic in apps/api/src/services/__tests__/storyGeneration-exclusions.test.ts
-- [ ] T110 [P] [US4] Write component tests for parental settings screens in apps/mobile/src/app/settings/__tests__/
-- [ ] T111 [US4] Write E2E test for User Story 4 acceptance scenarios (PIN, age band, exclusions) in apps/mobile/__tests__/e2e/us4-parental-controls.test.ts
+- [ ] T107 [P] [US4] Write unit tests for parental PIN middleware in apps/api/src/middleware/**tests**/parentalPin.test.ts
+- [ ] T108 [P] [US4] Write integration tests for settings routes in apps/api/src/routes/**tests**/settings.test.ts
+- [ ] T109 [P] [US4] Write unit tests for theme exclusion logic in apps/api/src/services/**tests**/storyGeneration-exclusions.test.ts
+- [ ] T110 [P] [US4] Write component tests for parental settings screens in apps/mobile/src/app/settings/**tests**/
+- [ ] T111 [US4] Write E2E test for User Story 4 acceptance scenarios (PIN, age band, exclusions) in apps/mobile/**tests**/e2e/us4-parental-controls.test.ts
 
 **Checkpoint**: Parental controls fully functional. Age band and theme exclusions respected in story generation. All US4 tests passing.
 
@@ -264,10 +264,10 @@
 
 ### Testing for US5
 
-- [ ] T124 [P] [US5] Write unit tests for interactive story generation with choice point validation in apps/api/src/services/__tests__/storyGeneration-interactive.test.ts
-- [ ] T125 [P] [US5] Write integration tests for segments endpoints in apps/api/src/routes/__tests__/stories-segments.test.ts
-- [ ] T126 [P] [US5] Write component tests for interactive story components in apps/mobile/src/components/story/__tests__/
-- [ ] T127 [US5] Write E2E test for User Story 5 acceptance scenarios (choice points, replay) in apps/mobile/__tests__/e2e/us5-interactive-stories.test.ts
+- [ ] T124 [P] [US5] Write unit tests for interactive story generation with choice point validation in apps/api/src/services/**tests**/storyGeneration-interactive.test.ts
+- [ ] T125 [P] [US5] Write integration tests for segments endpoints in apps/api/src/routes/**tests**/stories-segments.test.ts
+- [ ] T126 [P] [US5] Write component tests for interactive story components in apps/mobile/src/components/story/**tests**/
+- [ ] T127 [US5] Write E2E test for User Story 5 acceptance scenarios (choice points, replay) in apps/mobile/**tests**/e2e/us5-interactive-stories.test.ts
 
 **Checkpoint**: Interactive stories fully functional. Multiple playthroughs with different paths work. All US5 tests passing.
 
@@ -286,10 +286,10 @@
 
 **Purpose**: Validate success criteria and ensure quality gates
 
-- [ ] T132 [P] Add performance tests for SC-001 (30s generation time) in apps/api/__tests__/performance/story-generation.test.ts
-- [ ] T133 [P] Add performance tests for SC-003 (5s audio start) in apps/mobile/__tests__/performance/audio-playback.test.ts
-- [ ] T134 [P] Add performance tests for SC-007 (2s offline access) in apps/mobile/__tests__/performance/offline-access.test.ts
-- [ ] T135 Create content safety audit task to validate SC-002 (95% pass rate) in apps/api/__tests__/audit/content-safety.test.ts
+- [ ] T132 [P] Add performance tests for SC-001 (30s generation time) in apps/api/**tests**/performance/story-generation.test.ts
+- [ ] T133 [P] Add performance tests for SC-003 (5s audio start) in apps/mobile/**tests**/performance/audio-playback.test.ts
+- [ ] T134 [P] Add performance tests for SC-007 (2s offline access) in apps/mobile/**tests**/performance/offline-access.test.ts
+- [ ] T135 Create content safety audit task to validate SC-002 (95% pass rate) in apps/api/**tests**/audit/content-safety.test.ts
 - [ ] T136 Verify code coverage meets 80% threshold across all packages
 - [ ] T137 Run full E2E test suite across all user stories
 - [ ] T138 Generate test coverage report and address gaps
@@ -309,13 +309,13 @@
 
 ### User Story Dependencies
 
-| Story | Depends On | Can Start After |
-|-------|------------|-----------------|
-| US1 (Generate Story) | Foundational only | Phase 2 complete |
-| US2 (Audio Narration) | US1 (needs story to narrate) | T043-T046 complete |
-| US3 (Library) | US1 (needs stories to save) | T045 complete |
-| US4 (Parental Controls) | US1 (affects story generation) | T043 complete |
-| US5 (Interactive) | US1, US2 (extends both) | T043, T067 complete |
+| Story                   | Depends On                     | Can Start After     |
+| ----------------------- | ------------------------------ | ------------------- |
+| US1 (Generate Story)    | Foundational only              | Phase 2 complete    |
+| US2 (Audio Narration)   | US1 (needs story to narrate)   | T043-T046 complete  |
+| US3 (Library)           | US1 (needs stories to save)    | T045 complete       |
+| US4 (Parental Controls) | US1 (affects story generation) | T043 complete       |
+| US5 (Interactive)       | US1, US2 (extends both)        | T043, T067 complete |
 
 ### Within Each User Story
 
@@ -328,15 +328,18 @@
 ### Parallel Opportunities
 
 **Phase 1 (Setup)**:
+
 - T002, T003, T004 can run in parallel (different packages)
 - T005, T006, T007, T008 can run in parallel (different config files)
 
 **Phase 2 (Foundational)**:
+
 - T011, T012, T013, T014, T015 can run in parallel (different schema files)
 - T021, T022, T023, T024, T025 can run in parallel (different lib/middleware files)
 - T032, T033, T034, T035, T036, T037 can run in parallel (different mobile files)
 
 **User Stories**:
+
 - US3 and US4 can run in parallel after US1 is complete
 - Within each story, API and mobile work can proceed in parallel after routes are defined
 - All [P] marked tasks within a phase can run in parallel
@@ -394,15 +397,15 @@ Task T059-T065: Unit, integration, and E2E tests (parallel where possible)
 
 With multiple developers after Foundational is complete:
 
-| Developer | Assignment | Timeline |
-|-----------|------------|----------|
-| Dev A | User Story 1 (API) | Week 1-2 |
-| Dev B | User Story 1 (Mobile) | Week 1-2 (starts after API routes) |
-| Dev C | User Story 3 (Library) | Week 2 (after US1 API) |
-| Dev A | User Story 2 (Audio API) | Week 3 |
-| Dev B | User Story 2 (Audio Mobile) | Week 3 |
-| Dev C | User Story 4 (Parental) | Week 3-4 |
-| All | User Story 5 (Interactive) | Week 4-5 |
+| Developer | Assignment                  | Timeline                           |
+| --------- | --------------------------- | ---------------------------------- |
+| Dev A     | User Story 1 (API)          | Week 1-2                           |
+| Dev B     | User Story 1 (Mobile)       | Week 1-2 (starts after API routes) |
+| Dev C     | User Story 3 (Library)      | Week 2 (after US1 API)             |
+| Dev A     | User Story 2 (Audio API)    | Week 3                             |
+| Dev B     | User Story 2 (Audio Mobile) | Week 3                             |
+| Dev C     | User Story 4 (Parental)     | Week 3-4                           |
+| All       | User Story 5 (Interactive)  | Week 4-5                           |
 
 ---
 

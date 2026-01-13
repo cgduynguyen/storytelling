@@ -5,7 +5,7 @@
 **Status**: Draft  
 **Input**: User description: "AI Storyteller for Kids"
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 ### User Story 1 - Generate a New Story (Priority: P1)
 
@@ -105,7 +105,7 @@ During story reading, children can make choices that influence how the story unf
 - What happens when a user reaches the 50 story storage limit?
   - Display a friendly message prompting user to delete old stories before saving new ones
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 ### Functional Requirements
 
@@ -133,7 +133,7 @@ During story reading, children can make choices that influence how the story unf
 - **Story Theme**: Category of story (adventure, animals, fantasy, friendship, space, underwater, etc.)
 - **Choice Point**: A branch in an interactive story where user makes a decision affecting narrative direction
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 ### Measurable Outcomes
 
